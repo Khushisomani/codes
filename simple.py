@@ -6,30 +6,26 @@ import random
 import re
 import sys
 
-# Complete the hurdleRace function below.
-def hurdleRace(k, height):
-    p=0
-    for i in range(len(height)):
-        if height[i]<=k:
-            continue
+# Complete the utopianTree function below.
+def utopianTree(n):
+    x=1
+    for i in range(n):
+        if i%2==0:
+            x=x*2
         else:
-            if height[i]-k>p:
-                p=height[i]-k
-    return(p)
-
+            x=x+1 
+    return(x)
+            
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    nk = input().split()
+    t = int(input())
 
-    n = int(nk[0])
+    for t_itr in range(t):
+        n = int(input())
 
-    k = int(nk[1])
+        result = utopianTree(n)
 
-    height = list(map(int, input().rstrip().split()))
-
-    result = hurdleRace(k, height)
-
-    fptr.write(str(result) + '\n')
+        fptr.write(str(result) + '\n')
 
     fptr.close()
