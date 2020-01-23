@@ -6,32 +6,32 @@ import random
 import re
 import sys
 
-# Complete the angryProfessor function below.
-def angryProfessor(k, a):
-    count=0
-    for i in a:
-        if i<=0:
-            count+=1 
-    if count<k:
-        return('YES')
-    else:
-        return('NO')
+# Complete the permutationEquation function below.
+def permutationEquation(p):
+    a=[]
+    for i in range(len(p)):
+        x=i+1 
+        for j in range(len(p)):
+            if p[j]==x:
+                b=j+1
+                for k in range(len(p)):
+                    if p[k]==b:
+                        a.append(k+1)
+                        break
+    return(a)
+
+
+
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    t = int(input())
+    n = int(input())
 
-    for t_itr in range(t):
-        nk = input().split()
+    p = list(map(int, input().rstrip().split()))
 
-        n = int(nk[0])
+    result = permutationEquation(p)
 
-        k = int(nk[1])
-
-        a = list(map(int, input().rstrip().split()))
-
-        result = angryProfessor(k, a)
-
-        fptr.write(result + '\n')
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
 
     fptr.close()
