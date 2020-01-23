@@ -6,32 +6,23 @@ import random
 import re
 import sys
 
-# Complete the permutationEquation function below.
-def permutationEquation(p):
-    a=[]
-    for i in range(len(p)):
-        x=i+1 
-        for j in range(len(p)):
-            if p[j]==x:
-                b=j+1
-                for k in range(len(p)):
-                    if p[k]==b:
-                        a.append(k+1)
-                        break
-    return(a)
-
-
+# Complete the viralAdvertising function below.
+def viralAdvertising(n):
+    x=2
+    y=2
+    for i in range(n-1):
+        x=x*3
+        y=y+(x//2)
+        x=x//2
+    return(y)
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
     n = int(input())
 
-    p = list(map(int, input().rstrip().split()))
+    result = viralAdvertising(n)
 
-    result = permutationEquation(p)
-
-    fptr.write('\n'.join(map(str, result)))
-    fptr.write('\n')
+    fptr.write(str(result) + '\n')
 
     fptr.close()
