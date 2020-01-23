@@ -6,26 +6,32 @@ import random
 import re
 import sys
 
-# Complete the utopianTree function below.
-def utopianTree(n):
-    x=1
-    for i in range(n):
-        if i%2==0:
-            x=x*2
-        else:
-            x=x+1 
-    return(x)
-            
+# Complete the angryProfessor function below.
+def angryProfessor(k, a):
+    count=0
+    for i in a:
+        if i<=0:
+            count+=1 
+    if count<k:
+        return('YES')
+    else:
+        return('NO')
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
     t = int(input())
 
     for t_itr in range(t):
-        n = int(input())
+        nk = input().split()
 
-        result = utopianTree(n)
+        n = int(nk[0])
 
-        fptr.write(str(result) + '\n')
+        k = int(nk[1])
+
+        a = list(map(int, input().rstrip().split()))
+
+        result = angryProfessor(k, a)
+
+        fptr.write(result + '\n')
 
     fptr.close()
