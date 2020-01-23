@@ -4,29 +4,39 @@ import os
 import sys
 
 #
-# Complete the pageCount function below.
+# Complete the getMoneySpent function below.
 #
-def pageCount(n, p):
-    if n%2==1:
-        k=n//2+1 
-    else:
-        k=n/2  
-    if p<=k:
-        page=p//2 
-    else:
-        a=n-p 
-        page=a//2
-    return(page)
+def getMoneySpent(keyboards, drives, b):
+   max1=-1
+   for i in range(len(keyboards)):
+       for j in range(len(drives)):
+           if keyboards[i]+drives[j]>max1 and keyboards[i]+drives[j]<=b:
+               max1=keyboards[i]+drives[j]
+    
+   return(max1)
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    n = int(input())
+    bnm = input().split()
 
-    p = int(input())
+    b = int(bnm[0])
 
-    result = pageCount(n, p)
+    n = int(bnm[1])
 
-    fptr.write(str(result) + '\n')
+    m = int(bnm[2])
+
+    keyboards = list(map(int, input().rstrip().split()))
+
+    drives = list(map(int, input().rstrip().split()))
+
+    #
+    # The maximum amount of money she can spend on a keyboard and USB drive, or -1 if she can't purchase both items
+    #
+
+    moneySpent = getMoneySpent(keyboards, drives, b)
+
+    fptr.write(str(moneySpent) + '\n')
 
     fptr.close()
