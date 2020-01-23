@@ -1,37 +1,31 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jan 23 09:09:58 2020
-
-@author: HP
-"""
-
 #!/bin/python3
 
-import math
 import os
-import random
-import re
 import sys
 
-# Complete the sockMerchant function below.
-def sockMerchant(n, ar):
-    count=0
-    for i in range(len(ar)):
-        for j in range(i+1,len(ar)):
-            if ar[i]==ar[j] and ar[j]!='a':
-                count+=1 
-                ar[j]='a'
-                break
-    return(count)
+#
+# Complete the pageCount function below.
+#
+def pageCount(n, p):
+    if n%2==1:
+        k=n//2+1 
+    else:
+        k=n/2  
+    if p<=k:
+        page=p//2 
+    else:
+        a=n-p 
+        page=a//2
+    return(page)
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
     n = int(input())
 
-    ar = list(map(int, input().rstrip().split()))
+    p = int(input())
 
-    result = sockMerchant(n, ar)
+    result = pageCount(n, p)
 
     fptr.write(str(result) + '\n')
 
