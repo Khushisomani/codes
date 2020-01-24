@@ -6,30 +6,31 @@ import random
 import re
 import sys
 
-# Complete the cutTheSticks function below.
-def cutTheSticks(arr):
-    l=[]
-    l.append(len(arr))
-    while len(arr)!=0:
-        a=min(arr)
-        for j in range(len(arr)):
-            arr[j]=arr[j]-a
-        b=arr.count(0)
-        for i in range(b):
-            arr.remove(0)
-        l.append(len(arr))
-    l.remove(0)
-    return(l)
+# Complete the jumpingOnClouds function below.
+def jumpingOnClouds(c):
+    i=0
+    count=0
+    while i<len(c)-1:
+        if i+2==len(c)-1 or i+1==len(c)-1:
+            break
+        if c[i+2]==1:
+            i=i+1 
+            count+=1
+        else:
+            i=i+2
+            count+=1 
+    count+=1
+    return(count)
+
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
     n = int(input())
 
-    arr = list(map(int, input().rstrip().split()))
+    c = list(map(int, input().rstrip().split()))
 
-    result = cutTheSticks(arr)
+    result = jumpingOnClouds(c)
 
-    fptr.write('\n'.join(map(str, result)))
-    fptr.write('\n')
+    fptr.write(str(result) + '\n')
 
     fptr.close()
