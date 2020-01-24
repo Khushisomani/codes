@@ -6,32 +6,30 @@ import random
 import re
 import sys
 
-# Complete the findDigits function below.
-def findDigits(n):
+# Complete the cutTheSticks function below.
+def cutTheSticks(arr):
     l=[]
-    k=n
-    while(n>0):
-        a=n%10
-        l.append(a)
-        n=n//10
-    count=0
-    for i in range(len(l)):
-        if l[i]!=0:
-            if k%l[i]==0:
-                count+=1
-    return(count)
-
-
+    l.append(len(arr))
+    while len(arr)!=0:
+        a=min(arr)
+        for j in range(len(arr)):
+            arr[j]=arr[j]-a
+        b=arr.count(0)
+        for i in range(b):
+            arr.remove(0)
+        l.append(len(arr))
+    l.remove(0)
+    return(l)
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    t = int(input())
+    n = int(input())
 
-    for t_itr in range(t):
-        n = int(input())
+    arr = list(map(int, input().rstrip().split()))
 
-        result = findDigits(n)
+    result = cutTheSticks(arr)
 
-        fptr.write(str(result) + '\n')
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
 
     fptr.close()
