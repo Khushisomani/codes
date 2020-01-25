@@ -6,30 +6,24 @@ import random
 import re
 import sys
 
-# Complete the jumpingOnClouds function below.
-def jumpingOnClouds(c):
-    i=0
-    count=0
-    while i<len(c)-1:
-        if i+2==len(c)-1 or i+1==len(c)-1:
-            break
-        if c[i+2]==1:
-            i=i+1 
-            count+=1
-        else:
-            i=i+2
-            count+=1 
-    count+=1
-    return(count)
+# Complete the equalizeArray function below.
+def equalizeArray(arr):
+    a=len(arr)
+    l=[]
+    for i in range(len(arr)):
+        l.append(arr.count(arr[i]))
+    x=max(l)
+    b=a-x
+    return(b)
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
     n = int(input())
 
-    c = list(map(int, input().rstrip().split()))
+    arr = list(map(int, input().rstrip().split()))
 
-    result = jumpingOnClouds(c)
+    result = equalizeArray(arr)
 
     fptr.write(str(result) + '\n')
 
