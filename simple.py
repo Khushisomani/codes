@@ -6,25 +6,52 @@ import random
 import re
 import sys
 
-# Complete the equalizeArray function below.
-def equalizeArray(arr):
-    a=len(arr)
-    l=[]
-    for i in range(len(arr)):
-        l.append(arr.count(arr[i]))
-    x=max(l)
-    b=a-x
-    return(b)
+#
+# Complete the 'taumBday' function below.
+#
+# The function is expected to return a LONG_INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER b
+#  2. INTEGER w
+#  3. INTEGER bc
+#  4. INTEGER wc
+#  5. INTEGER z
+#
+
+def taumBday(b, w, bc, wc, z):
+    cost=0
+    if wc+z>bc:
+        cost=b*bc
+    else:
+        cost=b*(wc+z)
+    if bc+z>wc:
+        cost+=w*wc
+    else:
+        cost+=w*(bc+z)
+    return(cost)
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    n = int(input())
+    t = int(input().strip())
 
-    arr = list(map(int, input().rstrip().split()))
+    for t_itr in range(t):
+        first_multiple_input = input().rstrip().split()
 
-    result = equalizeArray(arr)
+        b = int(first_multiple_input[0])
 
-    fptr.write(str(result) + '\n')
+        w = int(first_multiple_input[1])
+
+        second_multiple_input = input().rstrip().split()
+
+        bc = int(second_multiple_input[0])
+
+        wc = int(second_multiple_input[1])
+
+        z = int(second_multiple_input[2])
+
+        result = taumBday(b, w, bc, wc, z)
+
+        fptr.write(str(result) + '\n')
 
     fptr.close()
