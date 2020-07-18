@@ -35,7 +35,7 @@ def print_singly_linked_list(node, sep, fptr):
 
         if node:
             fptr.write(sep)
-# Complete the getNode function below.
+# Complete the removeDuplicates function below.
 
 #
 # For your reference:
@@ -45,19 +45,32 @@ def print_singly_linked_list(node, sep, fptr):
 #     SinglyLinkedListNode next
 #
 #
-def getNode(head, positionFromTail):
+def removeDuplicates(head):
     temp=head
-    i=0
     while(temp.next!=None):
-        temp=temp.next
-        i+=1 
-    
-    s=i-positionFromTail
-    temp=head
-    j=0
-    while(j<s):
-        temp=temp.next
-        j+=1
-    return temp.data
+        if temp.data==temp.next.data:
+            temp.next=temp.next.next
+        else:
+            temp=temp.next
+    return head
 
 if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        llist_count = int(input())
+
+        llist = SinglyLinkedList()
+
+        for _ in range(llist_count):
+            llist_item = int(input())
+            llist.insert_node(llist_item)
+
+        llist1 = removeDuplicates(llist.head)
+
+        print_singly_linked_list(llist1, ' ', fptr)
+        fptr.write('\n')
+
+    fptr.close()
