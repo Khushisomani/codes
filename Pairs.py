@@ -10,10 +10,22 @@ import sys
 def pairs(k, arr):
     count=0
     arr.sort()
-    for i in range(len(arr)):
-        if (arr[i]+k) in arr[i+1:] :
-            count+=1 
-    return count
+    left=0
+    right=1
+    answer=0
+    while right<len(arr):
+        val=arr[right]-arr[left]
+        if val==k:
+            answer+=1
+            left+=1
+            right+=1
+        elif val<k:
+            right+=1 
+        else:
+            left+=1 
+            if left==right:
+                right+=1 
+    return answer
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
