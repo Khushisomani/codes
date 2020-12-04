@@ -1,91 +1,66 @@
-class MyCircularDeque:
+class MyCircularQueue:
 
     def __init__(self, k: int):
-        """
-        Initialize your data structure here. Set the size of the deque to be k.
-        """
-        self.size=k
         self.q=collections.deque()
-        self.busy=0
-
-    def insertFront(self, value: int) -> bool:
+        self.s=k
+      
+    def enQueue(self, value: int) -> bool:
         """
-        Adds an item at the front of Deque. Return true if the operation is successful.
+        Insert an element into the circular queue. Return true if the operation is successful.
         """
-        if len(self.q)<self.size:
-            self.q.appendleft(value)
-            return True
-        else:
-            return False
-    def insertLast(self, value: int) -> bool:
-        """
-        Adds an item at the rear of Deque. Return true if the operation is successful.
-        """
-        if len(self.q)<self.size:
+        if len(self.q)<self.s:
             self.q.append(value)
             return True
-        else:
-            return False
 
-    def deleteFront(self) -> bool:
+    def deQueue(self) -> bool:
         """
-        Deletes an item from the front of Deque. Return true if the operation is successful.
+        Delete an element from the circular queue. Return true if the operation is successful.
         """
         if len(self.q)>0:
             self.q.popleft()
             return True
-
-    def deleteLast(self) -> bool:
-        """
-        Deletes an item from the rear of Deque. Return true if the operation is successful.
-        """
-        if len(self.q)>0:
-            self.q.pop()
-            return True
         
 
-    def getFront(self) -> int:
+    def Front(self) -> int:
         """
-        Get the front item from the deque.
+        Get the front item from the queue.
         """
         if len(self.q)>0:
-            s=self.q[0]
-            return s
+            return self.q[0]
         else:
             return -1
-        
 
-    def getRear(self) -> int:
+    def Rear(self) -> int:
+        """
+        Get the last item from the queue.
+        """
         if len(self.q)>0:
-            s=self.q[-1]
-            return s
+            return self.q[-1]
         else:
             return -1
-        
-
     def isEmpty(self) -> bool:
-        if len(self.q)==0:
-            return True
-        else:
+        """
+        Checks whether the circular queue is empty or not.
+        """
+        if len(self.q)>0:
             return False
-
+        else:
+            return True
     def isFull(self) -> bool:
-        if len(self.q)==self.size:
+        """
+        Checks whether the circular queue is full or not.
+        """
+        if len(self.q)==self.s:
             return True
         else:
             return False
 
-      
-        
 
-
-# Your MyCircularDeque object will be instantiated and called as such:
-# obj = MyCircularDeque(k)
-# param_1 = obj.insertFront(value)
-# param_2 = obj.insertLast(value)
-# param_3 = obj.deleteFront()
-# param_4 = obj.deleteLast()
-# param_5 = obj.getFront()
-# param_6 = obj.getRear()
-# param_7 = obj.isEmpty()
-# param_8 = obj.isFull()
+# Your MyCircularQueue object will be instantiated and called as such:
+# obj = MyCircularQueue(k)
+# param_1 = obj.enQueue(value)
+# param_2 = obj.deQueue()
+# param_3 = obj.Front()
+# param_4 = obj.Rear()
+# param_5 = obj.isEmpty()
+# param_6 = obj.isFull()
